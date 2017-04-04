@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+# main landing page
+Route::get('/', 'HomeController');
+
 
 # log viewer
 if (config('app.env') == 'local') {
