@@ -16,6 +16,10 @@
 Route::get('/', 'HomeController');
 
 
+# results page
+Route::get('/results', 'HomeController@results');
+
+
 # log viewer
 if (config('app.env') == 'local') {
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

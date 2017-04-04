@@ -29,27 +29,21 @@
                     {{ $error }}
                 @endforeach
             </div>
-        @else
-            @if ($result)
-                <div class="alert alert-success" role="alert">
-                    Everybody's paying ${{ $result }}!
-                </div>
-            @endif
         @endif
 
-        <form method='GET' action='/'>
+        <form method='GET' action='/results'>
 
             <div class="form-item">
                 <label for="billAmount" class="label-required">How much is the bill?<br /><span class="required not-bold">(required)</span></label>
                 $
-                <input type="text" name="billAmount" id="billAmount" class="bill-amount" value='{{ $billAmount or '' }}'  />
+                <input type="text" name="billAmount" id="billAmount" class="bill-amount" value='{{ old('billAmount') }}' required />
             </div>
 
             <div class="form-item">
                 <label for="numberOfPeople">How many people are paying?</label>
                 <select name="numberOfPeople" id="numberOfPeople">
                     @for ($i=1; $i<=50; $i++)
-                        <option value="{{ $i }}" {{ ($i == $numberOfPeople) ? 'selected' : '' }} >
+                        <option value="{{ $i }}" {{ ($i == old('numberOfPeople')) ? 'selected' : '' }} >
                             {{ $i }}
                         </option>
                     @endfor
@@ -60,17 +54,17 @@
                 <label for="includeTip">
                     Include tip?
                 </label>
-                <input type="checkbox" name="includeTip" id="includeTip" class="js-includeTip" {{ ($includeTip) ? 'CHECKED' : '' }} />
+                <input type="checkbox" name="includeTip" id="includeTip" class="js-includeTip" {{ (old('includeTip')) ? 'CHECKED' : '' }} />
             </div>
 
-            <div class="form-item js-tipPercent {{ ($includeTip) ? '' : 'hidden' }} ">
+            <div class="form-item js-tipPercent {{ (old('includeTip')) ? '' : 'hidden' }} ">
                 <label for="tipPercent">
                     OK, how much tip?
                 </label>
                 <select name="tipPercent" id="tipPercent">
-                    <option value="15" {{ ($tipPercent == '15') ? 'selected' : '' }} >15</option>
-                    <option value="18" {{ ($tipPercent == '18') ? 'selected' : '' }} >18</option>
-                    <option value="20" {{ ($tipPercent == '20') ? 'selected' : '' }} >20</option>
+                    <option value="15" {{ (old('tipPercent') == '15') ? 'selected' : '' }} >15</option>
+                    <option value="18" {{ (old('tipPercent') == '18') ? 'selected' : '' }} >18</option>
+                    <option value="20" {{ (old('tipPercent') == '20') ? 'selected' : '' }} >20</option>
                 </select>
                 %
             </div>
@@ -79,7 +73,7 @@
                 <label for="roundUp">
                     Round up?
                 </label>
-                <input type="checkbox" name="roundUp" id="roundUp" {{ ($roundUp) ? 'CHECKED' : '' }} />
+                <input type="checkbox" name="roundUp" id="roundUp" {{ (old('roundUp')) ? 'CHECKED' : '' }} />
             </div>
 
             <div class="form-item submit-button">
