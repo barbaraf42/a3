@@ -11,6 +11,7 @@
 |
 */
 
+
 # main landing page
 Route::get('/', 'HomeController');
 
