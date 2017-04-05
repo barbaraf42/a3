@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Http\Requests\SanitizeFormRequest;
+
 
 class HomeController extends Controller
 {
@@ -13,7 +15,7 @@ class HomeController extends Controller
     }
 
     # results
-    public function results(Request $request) {
+    public function results(SanitizeFormRequest $request) {
 
         # validate input
         $this->validate($request, [
